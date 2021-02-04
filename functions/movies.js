@@ -1,8 +1,21 @@
-const { url } = require('url');
+const { URL } = require('url');
 const  fetch  = require('node-fetch');
-const movies = require('../data/movies.json');
-
+// const movies = require('../data/movies.json');
+const { query } = require('./util/hasura');
 exports.handler = async () => {
+
+  const {movies} = await query({
+    query: `
+      query {
+        movies {
+          id
+          poster
+          tagline
+          title
+        }
+      }
+    `
+  })
   const api = new URL('https://www.omdbapi.com')
    // add the secret API key to the qurey string
    api.searchParams.set('apikey',process.env.OMDB_API_KEY)
