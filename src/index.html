@@ -68,7 +68,7 @@
     <ul class="scores"></ul>
   </div>
 </template>
-
+<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>
 
   function addScores( element,scores){
@@ -78,7 +78,6 @@
     label.classList.add('source')
     
     // shorten long name to IMDB
-    console.log('*** ' + score.Source)
     label.innerText = score.Source === 'Internet Movie Database' ? 'IMDB' : score.Source;
     item.appendChild(label);
 
@@ -109,7 +108,7 @@
       element.querySelector('.movie-title').innerText = movie.title;
       element.querySelector('.tagline').innerText = movie.tagline;
       
-
+ 
       addScores(element, movie.scores)
 
       container.appendChild(element);
